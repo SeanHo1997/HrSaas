@@ -115,3 +115,19 @@ export function param2Obj(url) {
   })
   return obj
 }
+
+// 将组织架构一维数组结构转化为树形结构(递归算法)
+export const transDepartToTreeData = (list, content) => {
+  const arr = []
+  list.forEach(item => {
+    if (item.pid === content) {
+      const children = transDepartToTreeData(list, item.id)
+      if (children.length) {
+        item.children = children
+      }
+      arr.push(item)
+    }
+  })
+  return arr
+}
+

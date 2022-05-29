@@ -1,24 +1,36 @@
 import request from '@/utils/request'
 
-export function login(data) {
+// 登录
+export const login = data => {
   return request({
-    url: '/vue-admin-template/user/login',
-    method: 'post',
+    method: 'POST',
+    url: '/sys/login',
     data
   })
 }
 
-export function getInfo(token) {
+// 获取用户资料
+export const userInfo = () => {
   return request({
-    url: '/vue-admin-template/user/info',
-    method: 'get',
-    params: { token }
+    method: 'POST',
+    url: '/sys/profile'
   })
 }
 
-export function logout() {
+// 获取用户详情
+export const userBasicInfo = id => {
   return request({
-    url: '/vue-admin-template/user/logout',
-    method: 'post'
+    method: 'GET',
+    url: `/sys/user/${id}`
   })
 }
+
+// 保存员工基本信息
+export const saveBasicInfo = data => {
+  return request({
+    url: `/sys/user/${data.id}`,
+    method: 'PUT',
+    data
+  })
+}
+
