@@ -11,6 +11,7 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
+import checkPermission from '@/mixin/checkPermission'
 
 import '@/icons' // icon
 import '@/permission' // permission control
@@ -53,6 +54,9 @@ Vue.use(ElementUI, {
 
 // 注册自定义组件
 Vue.use(components)
+
+// mixin提供全局事件
+Vue.mixin(checkPermission)
 
 Vue.config.productionTip = false
 

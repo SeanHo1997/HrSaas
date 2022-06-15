@@ -4,7 +4,7 @@
       <!-- 工具栏 -->
       <PageTool :show-before="true">
         <!-- 前面内容 -->
-        <template v-slot:before>当前审批中 0 本月审批通过 1 本月审批驳回 0</template>
+        <template v-slot:before>当前审批中: <span class="ing">0</span> 本月审批通过: <span class="access">1</span> 本月审批驳回: <span class="reject">0</span></template>
         <template v-slot:after>
           <el-button size="mini" type="primary" @click="$router.push('/approvals/securitySetting')">流程设置</el-button>
         </template>
@@ -121,3 +121,16 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+  span {
+    &.ing {
+      color: blue;
+    }
+    &.access {
+      color: green;
+    }
+    &.reject {
+      color: red;
+    }
+  }
+</style>

@@ -12,7 +12,6 @@ import settingRouter from './modules/setting.js'
 import socialRouter from './modules/social.js'
 
 Vue.use(Router)
-
 /* Layout */
 import Layout from '@/layout'
 

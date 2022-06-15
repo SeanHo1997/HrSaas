@@ -3,13 +3,11 @@
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <div class="app-breadcrumb">
       火星专用高压锅科技有限公司
-      <span class="breadBtn">体验版</span>
     </div>
-    <!-- <breadcrumb class="breadcrumb-container" /> -->
     <!-- 右侧菜单 -->
     <div class="right-menu">
-      <LangChange class="screenFull" />
-      <ScreenFull ref="fullscreen" class="screenFull" />
+      <LangChange class="right-menu-item" />
+      <ScreenFull ref="fullscreen" class="screenFull right-menu-item" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imageerror="defaultImg" :src="photo" class="user-avatar">
@@ -17,14 +15,6 @@
           <i class="el-icon-caret-bottom" style="color:#fff" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              首页
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>项目地址</el-dropdown-item>
-          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">退出登录</span>
           </el-dropdown-item>
@@ -36,14 +26,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import ScreenFull from './ScreenFull/ScreenFull.vue'
+import ScreenFull from '../components/ScreenFull/ScreenFull.vue'
+import LangChange from '@/components/lang'
 
 export default {
   components: {
     Hamburger,
-    ScreenFull
+    ScreenFull,
+    LangChange
   },
   data() {
     return {
@@ -63,7 +54,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.$router.push(`/login`)
     }
   }
 }
@@ -83,7 +74,6 @@ export default {
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
     -webkit-tap-highlight-color:transparent;
 
     &:hover {
@@ -91,9 +81,6 @@ export default {
     }
   }
 
-  // .breadcrumb-container {
-  //   float: left;
-  // }
   .app-breadcrumb {
     display: inline-block;
     font-size: 18px;
@@ -115,67 +102,51 @@ export default {
 
   .right-menu {
     float: right;
-    height: 100%;
+    height: 50px;
     line-height: 50px;
-    .screenFull {
-      margin-right: 15px;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .avatar-container {
-      &:focus {
-        outline: none;
-      }
-    }
-
+    padding: 0 15px;
     .right-menu-item {
       display: inline-block;
-      padding: 0 8px;
+      margin-right: 15px;
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
+      &:hover {
         cursor: pointer;
-        transition: background .3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, .025)
-        }
+        background: rgba(0, 0, 0, .025)
       }
     }
 
     .avatar-container {
-      margin-right: 30px;
+      float: right;
+      height: 50px;
+      &:focus {
+        outline: none;
+      }
 
       .avatar-wrapper {
-        margin-top: 5px;
-        position: relative;
+        .user-avatar {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          vertical-align: middle;
+        }
+        .name {
+          color: #fff;
+          vertical-align: middle;
+          margin-left:5px;
+        }
+        .user-dropdown {
+          color: #fff;
+        }
 
-      .user-avatar {
-        cursor: pointer;
-        width: 30px;
-        height: 30px;
-        border-radius: 15px;
-        vertical-align: middle;
-      }
-      .name {
-        color: #fff;
-        vertical-align: middle;
-        margin-left:5px;
-      }
-      .user-dropdown {
-         color: #fff;
-      }
-
-      .el-icon-caret-bottom {
-        cursor: pointer;
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
-      }
+        .el-icon-caret-bottom {
+          margin-left: 3px;
+          cursor: pointer;
+          line-height: 50px;
+          font-size: 12px;
+        }
       }
     }
   }

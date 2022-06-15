@@ -10,7 +10,7 @@ export default {
       component: () => import('@/views/permission'),
       name: 'permissions',
       // 路由元信息（存储数据的地方
-      meta: { title: '权限管理', icon: 'example' }
+      meta: { title: '角色管理', icon: 'example' }
     }
   ]
 }

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 import { getTimeStamp } from '@/utils/auth.js'
 
-const TimeOut = 3600
+const TimeOut = 3600 // 3600s === 1hour
 
 // create an axios instance
 const request = axios.create({

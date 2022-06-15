@@ -44,6 +44,14 @@ if (isProd) {
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://ihrm-java.itheima.net/',
+        changeOrigin: true
+      }
+    }
+  },
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
    * for example GitHub Pages. If you plan to deploy your site to https://foo.github.io/bar/,
@@ -56,23 +64,6 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
-  devServer: {
-    port: port,
-    open: true,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    // 设置反向代理
-    proxy: {
-      // 当我们的本地的请求 有/api的时候，就会代理我们的请求地址向另外一个服务器发出请求
-      '/api': {
-        target: 'http://ihrm.itheima.net/', // 跨域请求的地址
-        changeOrigin: true // 是否跨域，需要设置为true,才能代理发出请求
-      }
-    }
-    // before: require('./mock/mock-server.js')
-  },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

@@ -31,9 +31,6 @@ export default {
       'sidebar',
       'routes'
     ]),
-    // routes() {
-    //   return this.$router.options.routes
-    // },
     activeMenu() {
       const route = this.$route
       const { meta, path } = route

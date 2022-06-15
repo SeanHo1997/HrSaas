@@ -2,6 +2,7 @@ import router from '@/router'
 import store from '@/store/index.js'
 import nprogress from 'nprogress'
 
+// 创建白名单路由地址
 const whiteList = ['/login', '/404']
 
 router.beforeEach(async(to, from, next) => {
@@ -22,7 +23,7 @@ router.beforeEach(async(to, from, next) => {
       next()
     }
   } else {
-    if (whiteList.indexOf(to.path) > -1) {
+    if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {
       next('/login')
@@ -31,6 +32,7 @@ router.beforeEach(async(to, from, next) => {
   nprogress.done()
 })
 
+// 后置守卫设置进度条完成
 router.afterEach(() => {
   nprogress.done()
 })

@@ -15,7 +15,7 @@
         <template slot="after">
           <el-button size="small" type="defualt">导入Excel</el-button>
           <el-button size="small" type="default">导出Excel</el-button>
-          <el-button size="small" type="primary" icon="el-icon-plus" @click="showDialog=true">增加新员工</el-button>
+          <el-button size="small" type="primary" icon="el-icon-plus" @click="showDialog=true" :disabled="!checkPermission('POINT-USER-ADD')">增加新员工</el-button>
           <!-- 添加新员工的 对话框 -->
           <AddNewEm
             :show-dialog="showDialog"
@@ -57,11 +57,11 @@
           </el-table-column>
           <el-table-column label="操作" width="350">
             <template slot-scope="scope">
-              <el-button size="mini" @click="$router.push(`/detail/${scope.row.id}`)">查看</el-button>
+              <el-button size="mini" @click="$router.push(`/detail/${scope.row.id}`)" :disabled="!checkPermission('POINT-USER-UPDATE')">查看</el-button>
               <el-button size="mini">转正</el-button>
               <el-button size="mini">调岗</el-button>
               <el-button size="mini" @click="assignRole(scope.row.id)">角色</el-button>
-              <el-button size="mini" @click.native="delEmployee(scope.row.id)">删除</el-button>
+              <el-button size="mini" @click.native="delEmployee(scope.row.id)" :disabled="!checkPermission('POINT-USER-DELETE')">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
