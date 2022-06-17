@@ -20,7 +20,6 @@ export default {
     changeLanguage(lang) {
       Cookie.set('language', lang) // 切换多语言
       this.$i18n.locale = lang // 设置给本地的i18n插件
-      this.$message.success('切换多语言成功')
     }
   }
 }

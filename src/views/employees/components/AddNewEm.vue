@@ -136,6 +136,7 @@ export default {
       this.depts = transDepartToTreeData(depts, '')
     },
     closeDialog() {
+      this.$emit('cancel')
       // 清空表单数据
       this.addForm = {
         username: '',
